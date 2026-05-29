@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Maths Quiz Class 9</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f4f4;
+      text-align: center;
+      padding: 20px;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      margin: auto;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px gray;
+    }
+    button {
+      display: block;
+      width: 100%;
+      margin: 8px 0;
+      padding: 10px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Class 9 Maths Quiz</h2>
+  <h3 id="question">Loading...</h3>
+
+  <div id="options"></div>
+
+  <h3 id="score"></h3>
+</div>
+
+<script>
+const quiz = [
+  {q:"Origin के coordinates?", o:["(1,1)","(0,0)","(1,0)","(0,1)"], a:1},
+  {q:"x-axis किसे कहते हैं?", o:["Horizontal line","Vertical line","Diagonal","Curve"], a:0},
+  {q:"y-axis किसे कहते हैं?", o:["Horizontal","Vertical","Circle","Point"], a:1},
+  {q:"Quadrants कितने होते हैं?", o:["2","3","4","5"], a:2},
+  {q:"Point (3,0) कहाँ होगा?", o:["x-axis","y-axis","Quadrant","Origin"], a:0},
+  {q:"Point (0,5)?", o:["x-axis","y-axis","Origin","Quadrant"], a:1},
+  {q:"Abscissa क्या है?", o:["x-coordinate","y-coordinate","Origin","Line"], a:0},
+  {q:"Ordinate क्या है?", o:["x","y","z","t"], a:1},
+  {q:"(-2,-3) कौन सा quadrant?", o:["I","II","III","IV"], a:2},
+  {q:"(2,3) कौन सा quadrant?", o:["I","II","III","IV"], a:0},
+  {q:"x-axis पर y value?", o:["1","-1","0","2"], a:2},
+  {q:"y-axis पर x value?", o:["0","1","2","-1"], a:0},
+  {q:"(-4,0)?", o:["x-axis","y-axis","Origin","Quadrant"], a:0},
+  {q:"(0,-6)?", o:["x-axis","y-axis","Origin","Quadrant"], a:1},
+  {q:"Coordinate system किसका भाग?", o:["Algebra","Geometry","Math","Physics"], a:1},
+  {q:"Plane क्या बनाता है?", o:["x only","y only","x+y axis","circle"], a:2},
+  {q:"Quadrant II signs?", o:["+,+","-,+","-,-","+,-"], a:1},
+  {q:"Quadrant IV signs?", o:["+,-","-,+","-,-","+,+"], a:0},
+  {q:"(x,0) कहाँ?", o:["x-axis","y-axis","Origin","Plane"], a:0},
+  {q:"(0,y) कहाँ?", o:["x-axis","y-axis","Origin","Plane"], a:1}
+];
+
+let index = 0;
+let score = 0;
+
+function loadQuestion(){
+  if(index >= quiz.length){
+    document.getElementById("question").innerHTML = "Quiz Finished!";
+    document.getElementById("options").innerHTML = "";
+    document.getElementById("score").innerHTML = "Your Score: " + score + "/" + quiz.length;
+    return;
+  }
+
+  let q = quiz[index];
+  document.getElementById("question").innerHTML = q.q;
+
+  let optionsHTML = "";
+  q.o.forEach((opt, i)=>{
+    optionsHTML += `<button onclick="checkAnswer(${i})">${opt}</button>`;
+  });
+
+  document.getElementById("options").innerHTML = optionsHTML;
+}
+
+function checkAnswer(i){
+  if(i === quiz[index].a){
+    score++;
+  }
+  index++;
+  loadQuestion();
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
